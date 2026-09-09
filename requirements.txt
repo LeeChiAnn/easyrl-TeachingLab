@@ -1,0 +1,7 @@
+numpy
+gym
+matplotlib
+pyyaml
+imageio
+Pillow
+psutil

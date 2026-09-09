@@ -1,0 +1,37 @@
+# EasyRL Teaching Lab —— 集中配置文件
+# 学生只需修改本文件即可切换环境 / 算法 / 调参，无需改动任何代码。
+
+environment:
+  name: cartpole            # cartpole | mountaincar
+  max_steps: 200            # 单轮最大步数
+  num_digitized: 6          # 连续状态离散化区间数（表格法使用）
+
+agent:
+  type: q_learning          # q_learning | sarsa | dqn | reinforce
+  learning_rate: 0.5        # 表格法(Q/SARSA)学习率；DQN/REINFORCE 使用各自内置默认 lr
+  gamma: 0.99               # 折扣因子
+  epsilon_start: 0.5        # 初始探索率（Q/SARSA 线性衰减用 0.5/(episode+1)）
+  epsilon_min: 0.0
+  epsilon_schedule: linear  # Q/SARSA 探索策略
+
+training:
+  episodes: 2000            # 最大训练轮数
+  consecutive_success: 10    # 连续成功 N 轮即视为收敛，提前停止
+  save_model: true
+  load_model: false         # true 时若已有模型则跳过训练（秒出 GIF）
+
+visualization:
+  plot_reward: true
+  plot_loss: true           # 表格法为 TD-error；DQN 为 MSE；REINFORCE 为策略梯度损失
+  dpi: 120
+  gifs:
+    trained: true           # 训练后贪心策略演示
+    random: true            # 随机策略对照
+    weak: false             # 少量训练对照（设为 true 会额外训练很快的弱模型）
+    weak_episodes: 20
+
+ops:
+  enabled: true             # 生成 HTML 运维报告
+
+output:
+  base_dir: output          # 输出根目录（按 环境/类型 分类存放）

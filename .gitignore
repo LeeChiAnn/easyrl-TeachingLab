@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# 运行产物（训练结果与演示文件，按需本地保留，不进仓库）
+output/
+*.npy
+
+# 环境
+.venv/
+env/
+.idea/
+.vscode/
+.DS_Store
